@@ -26,8 +26,13 @@ export default function Login({ navigation }) {
         </View>
 
         <View style={styles.links}>
-          
-          <Text style={styles.link}>Recuperar senha</Text>
+
+          <Text
+            style={styles.link}
+            onPress={() => navigation.navigate('Recuperar')}
+          >
+            Recuperar senha
+          </Text>
 
           <Text
             style={styles.link}

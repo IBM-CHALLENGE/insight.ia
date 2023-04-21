@@ -1,25 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import Container from '../components/Container';
 import Content from '../components/Content';
+import Back from '../components/Back';
+import { StyleSheet, Text, View } from 'react-native';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import Back from '../components/Back';
 
-export default function Cadastro({navigation}) {
+export default function Recuperar({navigation}) {
     return (
         <Container background>
             <Content>
                 <Back onPress={() => navigation.goBack()} />
 
-                <Text style={styles.title}>Cadastro</Text>
+                <Text style={styles.title}>Recuperar</Text>
 
                 <View style={styles.inputs}>
-                    <Input placeholder='Nome' />
                     <Input placeholder='Email' />
-                    <Input placeholder='Senha' password />
-                    <Input placeholder='Confirmar Senha' password />
-                    <Button text="Cadastrar" />
+                    <Button text="Recuperar Senha" />
                 </View>
             </Content>
         </Container>
