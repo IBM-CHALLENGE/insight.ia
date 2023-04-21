@@ -6,10 +6,10 @@ import Logo from "../../assets/images/logo.png";
 import Input from "../components/Input";
 import Button from "../components/Button";
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
   return (
     <Container background>
-      <Content>
+      <Content center>
         <View style={styles.head}>
           <Image source={Logo} style={styles.logo} />
 
@@ -20,14 +20,22 @@ export default function Login({navigation}) {
         </View>
 
         <View style={styles.inputs}>
-            <Input placeholder='Email' />
-            <Input placeholder='Senha' password />
-            <Button text="Entrar" />
+          <Input placeholder='Email' />
+          <Input placeholder='Senha' password />
+          <Button text="Entrar" />
         </View>
 
         <View style={styles.links}>
-          <Text style={styles.link} onPress={() => navigation.navigate('Cadastro')}>Recuperar senha</Text>
-          <Text style={styles.link}>Desejo me cadastrar</Text>
+          
+          <Text style={styles.link}>Recuperar senha</Text>
+
+          <Text
+            style={styles.link}
+            onPress={() => navigation.navigate('Cadastro')}
+          >
+            Desejo me cadastrar
+          </Text>
+
         </View>
 
       </Content>
@@ -64,18 +72,18 @@ const styles = StyleSheet.create({
     marginLeft: 3,
   },
 
-  inputs:{
+  inputs: {
     display: 'flex',
     gap: 20,
     marginBottom: 60
   },
 
-  links:{
-    display: 'flex',	
+  links: {
+    display: 'flex',
     gap: 15,
   },
 
-  link:{
+  link: {
     textAlign: 'center',
     color: '#FFF',
     fontFamily: 'Roboto-Regular',
