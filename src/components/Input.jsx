@@ -21,8 +21,9 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.7)',
         borderRadius: 5,
         fontFamily: 'Roboto 700',
-        fontWeight: 500,
+        fontWeight: '500',
         fontSize: '1rem',
-        color: '#000'
+        color: '#000',
+        width: '100%'
     }
 })

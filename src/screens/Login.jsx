@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import Content from "../components/Content";
 import Logo from "../../assets/images/logo.png";
 import Input from "../components/Input";
+import Button from "../components/Button";
 
 export default function Login() {
   return (
@@ -21,6 +22,7 @@ export default function Login() {
         <View style={styles.inputs}>
             <Input placeholder='Email' />
             <Input placeholder='Senha' />
+            <Button text="Entrar" />
         </View>
 
       </Content>
