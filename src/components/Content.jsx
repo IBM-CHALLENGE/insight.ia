@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 
 export default function Content(props) {
     return (
-        <ScrollView style={getStyle(props).container}>
+        <ScrollView style={getStyle(props).container} contentContainerStyle={getStyle(props).content}>
             {props.children}
         </ScrollView>
     )
@@ -17,6 +17,10 @@ function getStyle(props) {
             height: '100%',
             width: '100%',
             maxWidth: 500,
+        },
+
+        content: {
+            flexGrow: 1, justifyContent: 'center'
         }
     })
 }

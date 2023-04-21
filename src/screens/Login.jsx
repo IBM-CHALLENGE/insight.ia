@@ -6,7 +6,7 @@ import Logo from "../../assets/images/logo.png";
 import Input from "../components/Input";
 import Button from "../components/Button";
 
-export default function Login() {
+export default function Login({navigation}) {
   return (
     <Container background>
       <Content>
@@ -21,8 +21,13 @@ export default function Login() {
 
         <View style={styles.inputs}>
             <Input placeholder='Email' />
-            <Input placeholder='Senha' />
+            <Input placeholder='Senha' password />
             <Button text="Entrar" />
+        </View>
+
+        <View style={styles.links}>
+          <Text style={styles.link} onPress={() => navigation.navigate('Cadastro')}>Recuperar senha</Text>
+          <Text style={styles.link}>Desejo me cadastrar</Text>
         </View>
 
       </Content>
@@ -47,21 +52,33 @@ const styles = StyleSheet.create({
   },
 
   textInsight: {
-    fontFamily: "Pacifico",
-    fontSize: "3rem",
+    fontFamily: "Pacifico-Regular",
+    fontSize: 60,
     color: "#FFF",
   },
 
   textIa: {
-    fontFamily: "Poppins 700",
-    fontSize: "2rem",
+    fontFamily: "Poppins-Bold",
+    fontSize: 35,
     color: "#55AAFF",
-    fontWeight: 700,
     marginLeft: 3,
   },
 
   inputs:{
     display: 'flex',
-    gap: 20
+    gap: 20,
+    marginBottom: 60
+  },
+
+  links:{
+    display: 'flex',	
+    gap: 15,
+  },
+
+  link:{
+    textAlign: 'center',
+    color: '#FFF',
+    fontFamily: 'Roboto-Regular',
+    textDecorationLine: 'underline',
   }
 });

@@ -7,6 +7,7 @@ export default function Input(props) {
         style={styles.input}
         placeholder={props.placeholder}
         placeholderTextColor="#555"
+        secureTextEntry={props.password ?? false}
     >
         {props.children}
     </TextInput>
@@ -15,14 +16,11 @@ export default function Input(props) {
 
 const styles = StyleSheet.create({
     input:{
-        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
         padding: 10,
-        borderStyle: 'none',
-        borderColor: 'rgba(255, 255, 255, 0.7)',
         borderRadius: 5,
-        fontFamily: 'Roboto 700',
-        fontWeight: '500',
-        fontSize: '1rem',
+        fontFamily: 'Roboto-Regular',
+        fontSize: 16,
         color: '#000',
         width: '100%'
     }

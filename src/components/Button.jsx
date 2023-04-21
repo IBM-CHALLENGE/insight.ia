@@ -1,28 +1,27 @@
 import React from 'react'
-import {  StyleSheet, Text, TouchableHighlight } from 'react-native'
+import {  StyleSheet, Text, TouchableOpacity } from 'react-native'
 
 export default function Button(props) {
   return (
-    <TouchableHighlight style={styles.button} activeOpacity={0.6}>
+    <TouchableOpacity style={styles.button} activeOpacity={0.8}>
         <Text style={styles.text}>{props.text}</Text>
-    </TouchableHighlight>
+    </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
     button:{
         backgroundColor: '#55AAFF',
-        padding: 10,
-        textAlign: 'center',
+        padding: 8,
         borderRadius: 5
-    },
-
-    text:{
+      },
+      
+      text:{
+        textAlign: 'center',
         color: '#FFF',
         textTransform: 'uppercase',
-        fontFamily: 'Poppins 900',
-        fontWeight: '900',
-        fontSize: '1rem',
-        letterSpacing: 1.1,
+        fontFamily: 'Poppins-Black',
+        fontSize: 18,
+        letterSpacing: 1.3,
     }
 })
