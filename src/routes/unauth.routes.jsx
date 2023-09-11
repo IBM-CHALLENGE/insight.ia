@@ -1,7 +1,6 @@
 import {createNativeStackNavigator } from '@react-navigation/native-stack'
-import Cadastro from '../screens/Cadastro'
 import Login from '../screens/Login'
-import Recuperar from '../screens/Recuperar'
+import Cadastro from '../screens/Cadastro'
 
 
 export default function UnauthRoutes(){

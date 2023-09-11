@@ -54,7 +54,7 @@ export async function deletar(token) {
 
 export async function atualizar(token, usuario) {
     
-        const response = await fetch(`${env.BASE_URL}/usuario/${usuario.id}`, {
+        const response = await fetch(`${env.BASE_URL}/usuario`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

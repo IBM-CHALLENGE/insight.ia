@@ -52,6 +52,10 @@ export default function Login({ navigation }) {
       else if (response.status === 404) {
         alert('Erro', 'Email ou senha incorretos')
       } 
+
+      else if(response.status === 403){
+        alert('Erro', 'Conta desativada')
+      }
       
       else {
         alert('Erro', 'Erro ao realizar o login')

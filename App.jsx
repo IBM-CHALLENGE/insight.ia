@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import Routes from "./src/routes/routes";
 import { useCallback } from "react";
 import { StatusBar } from "expo-status-bar";

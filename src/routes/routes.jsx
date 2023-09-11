@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import UnauthRoutes from './unauth.routes';
 import { useAuth } from '../hooks/useAuth';
-import Home from '../screens/Home';
+import AuthRoutes from './auth.routes';
 
 export default function Routes() {
 
@@ -12,7 +12,7 @@ export default function Routes() {
     return (
         <NavigationContainer>
             {
-                token === null ? <UnauthRoutes /> : <Home />
+                token === null ? <UnauthRoutes /> : <AuthRoutes />
             } 
         </NavigationContainer>
     )
