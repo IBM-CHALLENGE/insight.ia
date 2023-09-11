@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
 import { View } from "react-native";
+import { AuthProvider } from "./src/context/AuthContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,9 +34,11 @@ export default function App() {
   }
 
   return (
-    <View onLayout={onLayoutRootView} style={{flex: 1, height: '100%', width: '100%'}}>
-      <Routes />
-      <StatusBar translucent={false} backgroundColor="#3A39E6" />
+    <View onLayout={onLayoutRootView} style={{ flex: 1, height: '100%', width: '100%' }}>
+      <AuthProvider>
+        <Routes />
+        <StatusBar translucent={false} backgroundColor="#3A39E6" />
+      </AuthProvider>
     </View>
   );
 }

@@ -1,15 +1,20 @@
 import React from 'react'
 import { StyleSheet, TextInput } from 'react-native'
 
-export default function Input(props) {
+export default function Input({placeholder, password, value, onChange, keyboard, defaultValue, disabled, children}) {
   return (
     <TextInput 
         style={styles.input}
-        placeholder={props.placeholder}
+        placeholder={placeholder}
         placeholderTextColor="#555"
-        secureTextEntry={props.password ?? false}
+        secureTextEntry={password ?? false}
+        value = {value}
+        onChangeText={onChange}
+        inputMode={keyboard ?? 'none'}
+        defaultValue={defaultValue}
+        editable={!disabled}
     >
-        {props.children}
+        {children}
     </TextInput>
   )
 }

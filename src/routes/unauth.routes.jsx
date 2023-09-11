@@ -4,7 +4,7 @@ import Login from '../screens/Login'
 import Recuperar from '../screens/Recuperar'
 
 
-export default function StackRoutes(){
+export default function UnauthRoutes(){
 
     const Stack = createNativeStackNavigator()
     
@@ -12,7 +12,7 @@ export default function StackRoutes(){
         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Login'>
             <Stack.Screen name="Login" component={Login}  />
             <Stack.Screen name="Cadastro" component={Cadastro}/>
-            <Stack.Screen name="Recuperar" component={Recuperar}/>
+            {/* <Stack.Screen name="Recuperar" component={Recuperar}/> */}
         </Stack.Navigator>
     )
 
