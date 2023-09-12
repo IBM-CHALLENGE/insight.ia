@@ -1,12 +1,19 @@
 
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import StackRoutes from './stack.routes';
+import UnauthRoutes from './unauth.routes';
+import { useAuth } from '../hooks/useAuth';
+import AuthRoutes from './auth.routes';
 
 export default function Routes() {
+
+    const {token} = useAuth()
+
     return (
         <NavigationContainer>
-            <StackRoutes />
+            {
+                token === null ? <UnauthRoutes /> : <AuthRoutes />
+            } 
         </NavigationContainer>
     )
 }
