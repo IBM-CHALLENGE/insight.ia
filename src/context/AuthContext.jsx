@@ -42,7 +42,6 @@ export const AuthProvider = ({ children }) => {
         }
     })
 
-
     async function login(token) {
         try {
             await AsyncStorage.setItem('@token', JSON.stringify(token));

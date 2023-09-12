@@ -16,9 +16,9 @@ export default function CustomDrawer(props) {
                 <Button text={"Novo Anúncio"} />
             </View>
 
-            {/* <DrawerContentScrollView {...props}>
+            <DrawerContentScrollView {...props}>
                 <DrawerItemList {...props} />
-            </DrawerContentScrollView> */}
+            </DrawerContentScrollView>
 
             <Pressable style={styles.configContainer} onPress={() => props.navigation.navigate("Perfil")}>
                 <View style={styles.line} />
