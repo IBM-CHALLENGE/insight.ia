@@ -8,12 +8,13 @@ export const AuthContext = createContext({
     token: null,
     login: () => { },
     logout: () => { },
-    fetchUsuario: () => { }
+    updateUsuario: () => { }
 });
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
+    const [updateUser, setUpdateUser] = useState(false);
 
     useEffect(() => {
         async function getUser() {
@@ -33,6 +34,12 @@ export const AuthProvider = ({ children }) => {
             fetchUsuario()
         }
     }, [token])
+
+    useEffect(() => {
+        if(token){
+            fetchUsuario()
+        }
+    }, [updateUser])
 
     const fetchUsuario = useCallback(async () => {
         const response = await buscar(token)
@@ -61,8 +68,12 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    async function updateUsuario() {
+        setUpdateUser(!updateUser)
+    }
+
     return (
-        <AuthContext.Provider value={{ user, token, login, logout }}>
+        <AuthContext.Provider value={{ user, token, login, logout, updateUsuario }}>
             {children}
         </AuthContext.Provider>
     )
