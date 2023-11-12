@@ -10,6 +10,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { deletar, listarPorUsuario } from '../api/anuncio';
 import { useAuth } from '../hooks/useAuth';
 import alert from '../components/Alert';
+import Anuncio from '../screens/Anuncio';
 
 
 export default function AuthRoutes() {
@@ -66,8 +67,8 @@ export default function AuthRoutes() {
                 anuncios.map(anuncio => (
                     <Drawer.Screen
                         key={anuncio.id}
-                        name={`Anuncio ${anuncio.descricao}`}
-                        component={Perfil}
+                        name={`Anuncio ${anuncio.descricao} (${anuncio.id})`}
+                        component={Anuncio}
                         initialParams={{id: anuncio.id}}
                         options={{
                             drawerLabel: () => null,
