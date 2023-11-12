@@ -11,6 +11,7 @@ import { deletar, listarPorUsuario } from '../api/anuncio';
 import { useAuth } from '../hooks/useAuth';
 import alert from '../components/Alert';
 import Anuncio from '../screens/Anuncio';
+import Transacao from '../screens/Transacao';
 
 
 export default function AuthRoutes() {
@@ -57,11 +58,14 @@ export default function AuthRoutes() {
             <Drawer.Screen name="Home" component={Home} options={{
                 drawerItemStyle: { display: 'none' }
             }} />
-            
+
             <Drawer.Screen name="Perfil" component={Perfil} options={{
                 drawerItemStyle: { display: 'none' }
             }} />
 
+            <Drawer.Screen name="Transações" component={Transacao} options={{
+                drawerItemStyle: { display: 'none' }
+            }} />
 
             {
                 anuncios.map(anuncio => (
@@ -69,7 +73,7 @@ export default function AuthRoutes() {
                         key={anuncio.id}
                         name={`Anuncio ${anuncio.descricao} (${anuncio.id})`}
                         component={Anuncio}
-                        initialParams={{id: anuncio.id}}
+                        initialParams={{ id: anuncio.id }}
                         options={{
                             drawerLabel: () => null,
                             drawerActiveBackgroundColor: '#ddd',
@@ -80,11 +84,11 @@ export default function AuthRoutes() {
                                         <Text style={styles.labelText}>{anuncio.descricao}</Text>
                                     </View>
                                     {
-                                        focused && 
-                                        <Pressable onPress={async(e) => { e.preventDefault(); await handleDelete(anuncio.id) }}>
-                                            <FontAwesome5 
-                                                name="trash" 
-                                                size={size - 3} 
+                                        focused &&
+                                        <Pressable onPress={async (e) => { e.preventDefault(); await handleDelete(anuncio.id) }}>
+                                            <FontAwesome5
+                                                name="trash"
+                                                size={size - 3}
                                                 color={"#dc3545"}
                                             />
                                         </Pressable>
