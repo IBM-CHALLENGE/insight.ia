@@ -1,22 +1,60 @@
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Button from './Button';
+import ModalStyled from './Modal';
+import Input from './Input';
+import { cadastrar } from '../api/anuncio';
+import { useAuth } from '../hooks/useAuth';
+import alert from './Alert';
 
 export default function CustomDrawer(props) {
+
+    const auth = useAuth()
+    const [modal, setModal] = useState(false)
+    const [input, setInput] = useState("")
+
+    const handleSave = async () => {
+        const anuncio = { 
+            descricao: input, 
+            usuario: {
+                id: auth.user.id
+            } 
+        }
+        const response = await cadastrar(auth.token, anuncio)
+
+        if(response.ok){
+            setInput("")
+            setModal(false)
+            auth.updateUsuario()
+        }
+        else{
+            alert("Erro", "Erro ao cadastrar anúncio")
+        }
+    }
+
     return (
         <View style={styles.container}>
+            <ModalStyled visible={modal} setVisible={setModal} title="Novo Anúncio">
+                <Input
+                    placeholder="Título"
+                    value={input}
+                    onChange={setInput}
+                />
+                <Button text="Salvar" onPress={handleSave}/>
+            </ModalStyled>
+
             <View style={styles.titleContainer}>
                 <Text style={styles.titleText} >Anúncios</Text>
                 <Ionicons name="ios-close" style={styles.titleIcon} onPress={() => props.navigation.closeDrawer()} />
             </View>
 
             <View style={styles.buttonContainer}>
-                <Button text={"Novo Anúncio"} />
+                <Button text={"Novo Anúncio"} onPress={() => setModal(true)}/>
             </View>
 
-            <DrawerContentScrollView {...props}>
+            <DrawerContentScrollView {...props} style={{marginBottom: 70}}>
                 <DrawerItemList {...props} />
             </DrawerContentScrollView>
 

@@ -4,11 +4,14 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../screens/Home';
 import CustomDrawer from '../components/CustomDrawer';
 import Perfil from '../screens/Perfil';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { listarPorUsuario } from '../api/anuncio';
+import { deletar, listarPorUsuario } from '../api/anuncio';
 import { useAuth } from '../hooks/useAuth';
+import alert from '../components/Alert';
+import Anuncio from '../screens/Anuncio';
+import Transacao from '../screens/Transacao';
 
 
 export default function AuthRoutes() {
@@ -30,7 +33,19 @@ export default function AuthRoutes() {
         if (auth.token) {
             fetchAnuncios()
         }
-    }, [auth.token])
+    }, [auth.user])
+
+    const handleDelete = async (id) => {
+        const response = await deletar(auth.token, id)
+
+        if (response.ok) {
+            alert('Sucesso', 'Anúncio deletado com sucesso')
+            fetchAnuncios()
+        }
+        else {
+            alert('Erro', 'Erro ao deletar anúncio')
+        }
+    }
 
     return (
         <Drawer.Navigator
@@ -42,33 +57,23 @@ export default function AuthRoutes() {
         >
             <Drawer.Screen name="Home" component={Home} options={{
                 drawerItemStyle: { display: 'none' }
-
-                // drawerLabel: () => null,
-                // drawerActiveBackgroundColor: '#ddd',
-                // drawerIcon: ({ focused, size, color }) => (
-                //     <View style={styles.option}>
-                //         <View style={styles.label}>
-                //             <Ionicons name="ios-megaphone" size={size} color={"#555"} />
-                //             <Text style={styles.labelText}>Home</Text>
-                //         </View>
-                //         {
-                //             focused && <FontAwesome5 name="trash" size={size-3} color={"#dc3545"} />
-                //         }
-                //     </View>
-                // )
             }} />
+
             <Drawer.Screen name="Perfil" component={Perfil} options={{
                 drawerItemStyle: { display: 'none' }
             }} />
 
+            <Drawer.Screen name="Transações" component={Transacao} options={{
+                drawerItemStyle: { display: 'none' }
+            }} />
 
             {
                 anuncios.map(anuncio => (
                     <Drawer.Screen
                         key={anuncio.id}
-                        name={`Anuncio ${anuncio.id}`}
-                        component={Perfil}
-                        initialParams={{id: anuncio.id}}
+                        name={`Anuncio ${anuncio.descricao} (${anuncio.id})`}
+                        component={Anuncio}
+                        initialParams={{ id: anuncio.id }}
                         options={{
                             drawerLabel: () => null,
                             drawerActiveBackgroundColor: '#ddd',
@@ -79,7 +84,14 @@ export default function AuthRoutes() {
                                         <Text style={styles.labelText}>{anuncio.descricao}</Text>
                                     </View>
                                     {
-                                        focused && <FontAwesome5 name="trash" size={size - 3} color={"#dc3545"} />
+                                        focused &&
+                                        <Pressable onPress={async (e) => { e.preventDefault(); await handleDelete(anuncio.id) }}>
+                                            <FontAwesome5
+                                                name="trash"
+                                                size={size - 3}
+                                                color={"#dc3545"}
+                                            />
+                                        </Pressable>
                                     }
                                 </View>
                             )

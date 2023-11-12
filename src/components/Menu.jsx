@@ -16,8 +16,8 @@ export default function Menu({ navigation }) {
                 <Text style={styles.textIa}>.ia</Text>
             </Text>
 
-            <Pressable style={styles.saldoContainer}>
-                <Text style={styles.saldoText}>Saldo(R$)</Text>
+            <Pressable style={styles.saldoContainer} onPress={() => navigation.navigate("Transações")}>
+                <Text style={styles.saldoText}>Saldo (R$)</Text>
                 <Text style={[styles.saldoText, styles.saldoValor]}>{user?.saldo.toFixed(2)}</Text>
             </Pressable>
         </View>

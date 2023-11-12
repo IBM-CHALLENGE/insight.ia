@@ -66,7 +66,7 @@ export default function Perfil({ navigation }) {
                 alert('Sucesso', 'Perfil atualizado com sucesso')  
                 setSenha('')
                 setConfirmarSenha('') 
-                auth.fetchUsuario()
+                auth.updateUsuario()
             }
 
             else{
